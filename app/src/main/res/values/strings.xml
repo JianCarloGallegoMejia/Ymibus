@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Ymibus</string>
+    <string name="nombreapp">¿Y mi bus?</string>
+    <string name="user">Usuario</string>
+    <string name="driver">Conductor</string>
+    <string name="aranjuez">Aranjuez</string>
+    <string name="title_activity_aranjuez">Map</string>
+</resources>

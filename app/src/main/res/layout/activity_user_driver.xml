@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_person_black_24dp"
             android:background="@color/backgroundcolor"
-            tools:ignore="VectorDrawableCompat" />
+            tools:ignore="VectorDrawableCompat"/>
 
         <TextView
             android:textStyle="bold"

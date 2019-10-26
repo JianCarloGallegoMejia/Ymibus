@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 public class UserDriverActivity extends AppCompatActivity {
     ImageButton user;
     ImageButton driver;
+    ImageButton information;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +18,7 @@ public class UserDriverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_driver);
         user = findViewById(R.id.userimage);
         driver = findViewById(R.id.busimage);
+        information = findViewById(R.id.imbinfo);
 
         user.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +32,14 @@ public class UserDriverActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (UserDriverActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        information.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (UserDriverActivity.this, InformationActivity.class);
                 startActivity(intent);
             }
         });

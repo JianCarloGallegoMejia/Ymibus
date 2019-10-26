@@ -69,3 +69,20 @@ public class Driver {
         this.celular = celular;
     }
 }
+
+/* pendiente
+
+1. Poner log off en DriverActivity
+2. Poner Spinner con rutas en DriverActivity
+3. Colocar la imagen en la parte superior del login
+4. Quitar el constraint layout del SplashActivity
+5. Quitar el constraint layout UserDriverActity
+6. Eliminar el marker cuando se inactiva el driver
+7. Crear metodo para actualizar la posicion del driver
+8. Revisar calculo de tiempo y metros para destino
+9. Poner mas rutas en RutasActivity
+10. Cambiar ic_launcher de la app
+
+
+
+ */

@@ -15,6 +15,7 @@ public class RutasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rutas);
+
         aranjuez = findViewById(R.id.btnAranjuez);
 
         aranjuez.setOnClickListener(new View.OnClickListener() {
@@ -23,7 +24,6 @@ public class RutasActivity extends AppCompatActivity {
                 Intent intent = new Intent(RutasActivity.this, MapsActivity.class);
                 intent.putExtra("ruta",1);
                 startActivity(intent);
-
             }
         });
     }

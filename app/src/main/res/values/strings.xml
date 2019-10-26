@@ -5,7 +5,7 @@
     <string name="driver">Conductor</string>
     <string name="aranjuez">Aranjuez</string>
     <string name="title_activity_aranjuez">Map</string>
-    <string name="userhint">Usuario o correo</string>
+    <string name="userhint">Correo electrónico</string>
     <string name="passwordhint">Contraseña</string>
     <string name="signin">Ingresar</string>
     <string name="register"><u>Registrarse</u></string>
@@ -14,4 +14,11 @@
     <string name="phone">Celular</string>
     <string name="email">Correo</string>
     <string name="confirmpassword">Confirmar contraseña</string>
+    <string name="edwin">Edwin Andrés Cubillos Vega</string>
+    <string name="alejandro">Alejandro Marín Londoño</string>
+    <string name="deisy">Deisy Mariana Velásquez Grajales</string>
+    <string name="yerina">Yerina Candelaria Avilez Palencia</string>
+    <string name="pablo">Juan Pablo Gutierrez</string>
+    <string name="jian">Jian Carlo Gallego Mejia</string>
+
 </resources>

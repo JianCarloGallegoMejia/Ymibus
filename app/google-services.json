@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1062318951614",
+    "firebase_url": "https://ymibus.firebaseio.com",
+    "project_id": "ymibus",
+    "storage_bucket": "ymibus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062318951614:android:7e1498ebe2f56b6a5ce2ef",
+        "android_client_info": {
+          "package_name": "com.iejag.ymibus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062318951614-bu043hl0b4o9b319r4va9kjja041h3k8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iejag.ymibus",
+            "certificate_hash": "c2561be34123b665adb9e1288f9439bd5748cee1"
+          }
+        },
+        {
+          "client_id": "1062318951614-nd96dcrjufskjbe23em50nsubsc4cjjm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDakiOlDvMyYnRw3MBqjT0PdtlzDFxg3yw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062318951614-nd96dcrjufskjbe23em50nsubsc4cjjm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

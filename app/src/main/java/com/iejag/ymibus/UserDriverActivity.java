@@ -38,8 +38,8 @@ public class UserDriverActivity extends AppCompatActivity {
 
         information.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserDriverActivity.this, InfoActivity.class);
+            public void onClick(View v) {
+                Intent intent = new Intent (UserDriverActivity.this, InformationActivity.class);
                 startActivity(intent);
             }
         });

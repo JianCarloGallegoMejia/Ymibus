@@ -20,23 +20,25 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText user;
+    EditText email;
     EditText password;
     Button ingresar;
     TextView registrar;
-    String TAG="Login Activity";
+    String TAG = "Login Activity";
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
-        user=findViewById(R.id.edtUser);
-        password=findViewById(R.id.edtPassword);
-        registrar=findViewById(R.id.tvRegistrarse);
-        ingresar=findViewById(R.id.btnIngresar);
+        email = findViewById(R.id.edtUser);
+        password = findViewById(R.id.edtPassword);
+        registrar = findViewById(R.id.tvRegistrarse);
+        ingresar = findViewById(R.id.btnIngresar);
 
         ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,29 +55,43 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (user != null) {
+            Intent intent = new Intent(this, DriverActivity.class);
+            startActivity(intent);
+        }
+    }
+
     private void firebaselogin() {
-        mAuth.signInWithEmailAndPassword(user.getText().toString(), password.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+        if (email.length() < 1 || password.length() < 1) {
+            Toast.makeText(LoginActivity.this, "Debe llenar todos los campos", Toast.LENGTH_SHORT).show();
 
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(LoginActivity.this, DriverActivity.class);
-                            startActivity(intent);
+        } else {
+            mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithEmail:success");
 
+                                Intent intent = new Intent(LoginActivity.this, DriverActivity.class);
+                                startActivity(intent);
+
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(LoginActivity.this, "Usuario y/o contraseña incorrectos.",
+                                        Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            // ...
                         }
-
-                        // ...
-                    }
-                });
+                    });
+        }
     }
 }

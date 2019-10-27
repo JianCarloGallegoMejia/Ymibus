@@ -4,8 +4,9 @@
     <string name="user">Usuario</string>
     <string name="driver">Conductor</string>
     <string name="aranjuez">Aranjuez</string>
+    <string name="integrado">Integrado</string>
     <string name="title_activity_aranjuez">Map</string>
-    <string name="userhint">Usuario o correo</string>
+    <string name="userhint">Correo electrónico</string>
     <string name="passwordhint">Contraseña</string>
     <string name="signin">Ingresar</string>
     <string name="register"><u>Registrarse</u></string>

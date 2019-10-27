@@ -21,5 +21,6 @@
     <string name="yerina">Yerina Candelaria Avilez Palencia</string>
     <string name="pablo">Juan Pablo Gutierrez</string>
     <string name="jian">Jian Carlo Gallego Mejia</string>
+    <string name="logout">Cerrar sesión</string>
 
 </resources>

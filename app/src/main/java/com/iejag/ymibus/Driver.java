@@ -72,7 +72,7 @@ public class Driver {
 
 /* pendiente
 
-1. Poner log off en DriverActivity
+1. Poner log off en DriverActivity LISTOOOOOOO
 2. Poner Spinner con rutas en DriverActivity
 3. Colocar la imagen en la parte superior del login LISTOOOOOOOOOOO
 4. Quitar el constraint layout del SplashActivity  LISTOOOOOOOOOOO
@@ -81,7 +81,7 @@ public class Driver {
 7. Crear metodo para actualizar la posicion del driver
 8. Revisar calculo de tiempo y metros para destino
 9. Poner mas rutas en RutasActivity
-10. Cambiar ic_launcher de la app
+10. Cambiar ic_launcher de la app LISTOOOOOO
 
 
 

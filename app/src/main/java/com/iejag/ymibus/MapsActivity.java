@@ -15,8 +15,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -34,11 +36,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     FirebaseUser user;
     FirebaseDatabase database;
     DatabaseReference myRef;
+    Marker mPreviousMarker;
     private GoogleMap mMap;
     private String TAG = "Maps activity";
     private int ruta;
     private FirebaseAuth mAuth;
     private FusedLocationProviderClient fusedLocationClient;
+    private BitmapDescriptor bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.d("ruta", String.valueOf(ruta));
         // user = mAuth.getCurrentUser();
         database = FirebaseDatabase.getInstance();
-
     }
 
 
@@ -71,8 +74,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         loadMyPosition();
-
-        loadRoute(ruta);
+        loadRoute();
         loadDriverPosition();
     }
 
@@ -80,21 +82,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         switch (ruta) {
             case 1:
-                loadAranjuez();
+                loadDrivers("aranjuez");
+                break;
+            case 2:
+                loadDrivers("integrado");
                 break;
         }
     }
 
-    private void loadAranjuez() {
+    private void loadDrivers(String bus) {
 
         //Falta borrar marker cuando se inactiva el driver
 
-        myRef = database.getReference("rutas").child("aranjuez");
+        myRef = database.getReference("rutas").child(bus);
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                mMap.clear();
+                loadRoute();
                 for (DataSnapshot driverSnapshot : dataSnapshot.getChildren()) {
                     Ruta ruta = driverSnapshot.getValue(Ruta.class);
+                    Log.d(TAG, ruta.getLatitud() + " , " + ruta.getLongitud());
                     addMarker(ruta);
                 }
             }
@@ -109,16 +117,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void addMarker(Ruta ruta) {
         LatLng driver = new LatLng(Double.parseDouble(ruta.getLatitud()), Double.parseDouble(ruta.getLongitud()));
-        mMap.addMarker(new MarkerOptions()
+        mPreviousMarker = mMap.addMarker(new MarkerOptions()
                 .position(driver)
                 .title("Driver")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.logomarker)));
     }
 
-    private void loadRoute(int ruta) {
+    private void loadRoute() {
+        Polyline polyline;
         switch (ruta) {
             case 1:
-                Polyline polyline1 = mMap.addPolyline(new PolylineOptions()
+                polyline = mMap.addPolyline(new PolylineOptions()
                         .clickable(true)
                         .color(Color.GREEN)
                         .add(
@@ -145,7 +154,58 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 new LatLng(6.256245, -75.567783),
                                 new LatLng(6.254092, -75.563077),
                                 new LatLng(6.253818, -75.563071)));
+                
                 break;
+            case 2:
+                polyline = mMap.addPolyline(new PolylineOptions()
+                        .clickable(true)
+                        .color(Color.GREEN)
+                        .add(
+                                new LatLng(6.287008, -75.552697),
+                                new LatLng(6.284264, -75.552819),
+                                new LatLng(6.284469, -75.553629),
+                                new LatLng(6.285679, -75.553643),
+                                new LatLng(6.285814, -75.555811),
+                                new LatLng(6.285967, -75.559896),
+                                new LatLng(6.286127, -75.562720),
+                                new LatLng(6.287388, -75.562656),
+                                new LatLng(6.287442, -75.563407),
+                                new LatLng(6.288777, -75.563402),
+                                new LatLng(6.289391, -75.562908),
+                                new LatLng(6.289289, -75.562490),
+                                new LatLng(6.289404, -75.562368),
+                                new LatLng(6.290420, -75.562723),
+                                new LatLng(6.291163, -75.562388),
+                                new LatLng(6.291171, -75.562527),
+                                new LatLng(6.290833, -75.562892)));
+
+                LatLng inicio = new LatLng(6.287008, -75.552697);
+
+                mMap.addMarker(new MarkerOptions()
+                        .position(inicio)
+                        .title("Inicio"));
+
+                LatLng fin = new LatLng(6.290833, -75.562892);
+
+                mMap.addMarker(new MarkerOptions()
+                        .position(fin)
+                        .title("Fin"));
+                break;
+
+        /*        LatLng inicio = new LatLng(6.287008, -75.552697);
+                bd = BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_green_24dp);
+                mMap.addMarker(new MarkerOptions()
+                        .position(inicio)
+                        .title("Inicio")
+                .icon(bd));
+
+                LatLng fin = new LatLng(6.290833, -75.562892);
+                bd = BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_red_24dp);
+                mMap.addMarker(new MarkerOptions()
+                        .position(fin)
+                        .title("Fin")
+                        .icon(bd));
+                break;*/
         }
     }
 
@@ -164,25 +224,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-       fusedLocationClient.getLastLocation()
+        fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
                         // Got last known location. In some rare situations this can be null.
                         if (location != null) {
                             LatLng userPosition = new LatLng(location.getLatitude(), location.getLongitude());
-                            Log.d(TAG, String.valueOf(location.getLatitude())+" , "+String.valueOf(location.getLongitude()));
+                            Log.d(TAG, location.getLatitude() + " , " + location.getLongitude());
                             mMap.addMarker(new MarkerOptions()
                                     .position(userPosition)
-                                    .title("Me")
-                                    .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)));
+                                    .title("Me"));
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userPosition, 15));
                         }
                     }
                 });
     }
-
-
 }
 
 

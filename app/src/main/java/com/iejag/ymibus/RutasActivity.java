@@ -1,30 +1,29 @@
 package com.iejag.ymibus;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class RutasActivity extends AppCompatActivity {
-
-    Button aranjuez;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rutas);
+    }
 
-        aranjuez = findViewById(R.id.btnAranjuez);
-
-        aranjuez.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RutasActivity.this, MapsActivity.class);
-                intent.putExtra("ruta",1);
-                startActivity(intent);
-            }
-        });
+    public void onClickedButton(View view) {
+        Intent intent = new Intent(RutasActivity.this, MapsActivity.class);
+        switch (view.getId()) {
+            case R.id.btnAranjuez:
+                intent.putExtra("ruta", 1);
+                break;
+            case R.id.btnIntegrado:
+                intent.putExtra("ruta", 2);
+                break;
+        }
+        startActivity(intent);
     }
 }

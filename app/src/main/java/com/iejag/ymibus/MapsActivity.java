@@ -119,7 +119,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng driver = new LatLng(Double.parseDouble(ruta.getLatitud()), Double.parseDouble(ruta.getLongitud()));
         mPreviousMarker = mMap.addMarker(new MarkerOptions()
                 .position(driver)
-                .title("Driver")
+                .title("Conductor")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.logomarker)));
     }
 
@@ -129,7 +129,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             case 1:
                 polyline = mMap.addPolyline(new PolylineOptions()
                         .clickable(true)
-                        .color(Color.GREEN)
+                        .color(Color.RED)
                         .add(
                                 new LatLng(6.287263, -75.552701),
                                 new LatLng(6.286819, -75.552701),
@@ -153,8 +153,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 new LatLng(6.272435, -75.564978),
                                 new LatLng(6.256245, -75.567783),
                                 new LatLng(6.254092, -75.563077),
-                                new LatLng(6.253818, -75.563071)));
-                
+                                new LatLng(6.253818, -75.563071),
+                                new LatLng(6.253156, -75.561972),
+                                new LatLng(6.252028, -75.560380),
+                                new LatLng(6.243619, -75.564637),
+                                new LatLng(6.245521, -75.567154),
+                                new LatLng(6.247920, -75.565376),
+                                new LatLng(6.253263, -75.562286),
+                                new LatLng(6.254047, -75.562101),
+                                new LatLng(6.254636, -75.562325),
+                                new LatLng(6.257060, -75.565896),
+                                new LatLng(6.263459, -75.563439),
+                                new LatLng(6.263695, -75.562649),
+                                new LatLng(6.264057, -75.562640),
+                                new LatLng(6.267653, -75.561817),
+                                new LatLng(6.268965, -75.561935),
+                                new LatLng(6.270138, -75.562010),
+                                new LatLng(6.270895, -75.562031),
+                                new LatLng(6.272345, -75.562428),
+                                new LatLng(6.274705, -75.562485),
+                                new LatLng(6.275711, -75.562406),
+                                new LatLng(6.276017, -75.562492),
+                                new LatLng(6.277600, -75.563787),
+                                new LatLng(6.278561, -75.563213),
+                                new LatLng(6.278492, -75.562942),
+                                new LatLng(6.278516, -75.562715),
+                                new LatLng(6.279662, -75.561857),
+                                new LatLng(6.280154, -75.561815),
+                                new LatLng(6.280383, -75.561892),
+                                new LatLng(6.281105, -75.562507),
+                                new LatLng(6.281356, -75.562449),
+                                new LatLng(6.282642, -75.562473),
+                                new LatLng(6.282902, -75.562278),
+                                new LatLng(6.283168, -75.561785),
+                                new LatLng(6.283453, -75.561648),
+                                new LatLng(6.283211, -75.553750),
+                                new LatLng(6.284442, -75.553601),
+                                new LatLng(6.284219, -75.552774),
+                                new LatLng(6.286050, -75.552660	)));
+
                 break;
             case 2:
                 polyline = mMap.addPolyline(new PolylineOptions()
